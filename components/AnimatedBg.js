@@ -97,9 +97,9 @@ export default function AnimatedBg({ motion, accent = '#6c63ff', dark = false })
 
       {motion === 'sparkles' && (
         <>
-          <div className="ab-dot" style={{ boxShadow: dotShadows(60, accent, 13), animation: 'ab-twinkle 3s ease-in-out infinite' }}></div>
-          <div className="ab-dot" style={{ width: 3, height: 3, boxShadow: dotShadows(30, accent, 71), animation: 'ab-twinkle 5s ease-in-out infinite' }}></div>
-          <div className="ab-dot" style={{ boxShadow: dotShadows(25, dark ? '#ffffff' : accent, 49), animation: 'ab-twinkle 4s ease-in-out infinite' }}></div>
+          <div className="ab-dot" style={{ boxShadow: dotShadows(280, accent, 13), animation: 'ab-twinkle 3s ease-in-out infinite' }}></div>
+          <div className="ab-dot" style={{ width: 3, height: 3, boxShadow: dotShadows(160, accent, 71), animation: 'ab-twinkle 5s ease-in-out infinite' }}></div>
+          <div className="ab-dot" style={{ boxShadow: dotShadows(140, dark ? '#ffffff' : accent, 49), animation: 'ab-twinkle 4s ease-in-out infinite' }}></div>
         </>
       )}
 
