@@ -7,6 +7,15 @@ const THEMES = [
   { id: 'dark',     label: 'Dark mode',        desc: 'Fondo oscuro · elegante' },
   { id: 'gradient', label: 'Degradado',        desc: 'Header colorido · amigable' },
   { id: 'tornasol', label: 'Burbuja tornasol', desc: 'Iridiscente · holográfico' },
+  { id: 'custom',   label: 'Personalizado',    desc: 'Elige cada color tú mismo' },
+]
+
+const FIELDS = [
+  { key: 'accent',     label: 'Color acento',  hint: 'Botones y detalles' },
+  { key: 'bg',         label: 'Fondo',         hint: 'Color de la página' },
+  { key: 'card',       label: 'Tarjetas',      hint: 'Fondo de los links' },
+  { key: 'text_color', label: 'Texto',         hint: 'Texto principal' },
+  { key: 'muted',      label: 'Texto suave',   hint: 'Bio y subtítulos' },
 ]
 
 export default function ColorsTab({ data, onChange }) {
@@ -18,15 +27,6 @@ export default function ColorsTab({ data, onChange }) {
 
   const palettes = theme === 'dark' ? PALETTES_DARK : PALETTES_LIGHT
   const showPalettes = theme === 'light' || theme === 'gradient' || theme === 'dark'
-  const showCustomColors = theme !== 'tornasol'
-
-  const fields = [
-    { key: 'accent',     label: 'Acento' },
-    { key: 'bg',         label: 'Fondo' },
-    { key: 'card',       label: 'Tarjetas' },
-    { key: 'text_color', label: 'Texto' },
-    { key: 'muted',      label: 'Texto muted' },
-  ]
 
   return (
     <div className="flex flex-col gap-5">
@@ -74,33 +74,33 @@ export default function ColorsTab({ data, onChange }) {
         </div>
       )}
 
-      {showCustomColors && (
-        <div className="border-t border-gray-100 pt-4">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Personalizar colores</p>
-          <div className="flex flex-col gap-2">
-            {fields.map(f => (
-              <div key={f.key} className="flex items-center justify-between px-3 py-2.5 border border-gray-200 rounded-xl bg-gray-50">
-                <span className="text-sm text-gray-600">{f.label}</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-400 font-mono">{data[f.key] || '#000000'}</span>
-                  <input
-                    type="color"
-                    value={data[f.key] || '#000000'}
-                    onChange={e => onChange({ [f.key]: e.target.value })}
-                    className="w-9 h-7 rounded-lg border border-gray-200 cursor-pointer p-0.5 bg-white"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {theme === 'tornasol' && (
         <div className="border-t border-gray-100 pt-4">
           <p className="text-xs text-gray-400 text-center py-2">
             El diseño Burbuja tornasol usa colores fijos iridiscentes ✨
           </p>
+        </div>
+      )}
+
+      {theme === 'custom' && (
+        <div className="border-t border-gray-100 pt-4 flex flex-col gap-2">
+          {FIELDS.map(f => (
+            <div key={f.key} className="flex items-center justify-between px-3 py-2.5 border border-gray-200 rounded-xl bg-gray-50">
+              <div>
+                <p className="text-sm text-gray-700">{f.label}</p>
+                <p className="text-xs text-gray-400">{f.hint}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-gray-400 font-mono">{data[f.key] || '#000000'}</span>
+                <input
+                  type="color"
+                  value={data[f.key] || '#000000'}
+                  onChange={e => onChange({ [f.key]: e.target.value })}
+                  className="w-9 h-7 rounded-lg border border-gray-200 cursor-pointer p-0.5 bg-white"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
