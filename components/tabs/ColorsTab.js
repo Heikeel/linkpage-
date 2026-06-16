@@ -12,9 +12,9 @@ const THEMES = [
 ]
 
 const ANIMATED_THEMES = [
-  { id: 'tornasol', label: 'Burbuja tornasol', desc: 'Iridiscente · holográfico', emoji: '🫧' },
-  { id: 'cosmos',   label: 'Galaxia',          desc: 'Nebulosa · estrellas',      emoji: '🌌' },
-  { id: 'cometas',  label: 'Meteoros',         desc: 'Cielo nocturno · cometas',  emoji: '☄️' },
+  { id: 'tornasol', label: 'Burbuja tornasol', desc: 'Iridiscente · holográfico' },
+  { id: 'cosmos',   label: 'Galaxia',          desc: 'Nebulosa · estrellas' },
+  { id: 'cometas',  label: 'Meteoros',         desc: 'Cielo nocturno · cometas' },
 ]
 
 const FIELDS = [
@@ -100,7 +100,7 @@ export default function ColorsTab({ data, onChange }) {
       </div>
 
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Con movimiento ✨</p>
+        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Con movimiento</p>
         <div className="flex flex-col gap-2">
           {ANIMATED_THEMES.map(t => <ThemeButton key={t.id} t={t} />)}
         </div>
