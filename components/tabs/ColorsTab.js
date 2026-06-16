@@ -28,9 +28,13 @@ const FIELDS = [
 const ANIMATED_IDS = ANIMATED_THEMES.map(t => t.id)
 
 const BG_MOTIONS = [
-  { id: 'aurora',  label: 'Aurora',   icon: 'ti-sparkles' },
-  { id: 'bubbles', label: 'Burbujas', icon: 'ti-circles' },
-  { id: 'waves',   label: 'Ondas',    icon: 'ti-ripple' },
+  { id: 'aurora',   label: 'Aurora',    icon: 'ti-sparkles' },
+  { id: 'bubbles',  label: 'Burbujas',  icon: 'ti-circles' },
+  { id: 'waves',    label: 'Ondas',     icon: 'ti-ripple' },
+  { id: 'gradient', label: 'Degradado', icon: 'ti-gradienter' },
+  { id: 'sparkles', label: 'Destellos', icon: 'ti-stars' },
+  { id: 'pulse',    label: 'Pulso',     icon: 'ti-bolt' },
+  { id: 'rays',     label: 'Rayos',     icon: 'ti-sun' },
 ]
 
 export default function ColorsTab({ data, onChange }) {
