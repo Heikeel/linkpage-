@@ -25,11 +25,16 @@ function CallbackHandler() {
       const code = searchParams.get('code')
 
       if (code) {
-        await supabase.auth.exchangeCodeForSession(code)
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+        if (exchangeError) {
+          console.error('exchangeCodeForSession error:', exchangeError.message, exchangeError.status)
+          router.push('/login?error=' + encodeURIComponent(exchangeError.message))
+          return
+        }
       }
 
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push('/login'); return }
+      if (!user) { router.push('/login?error=no_user'); return }
 
       const { data: profile } = await supabase
         .from('profiles').select('id').eq('id', user.id).single()
