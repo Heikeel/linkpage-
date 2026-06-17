@@ -4,15 +4,18 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 export default function StoreTab({ userId, paypalEmail: initialPaypalEmail, onChange }) {
-  const [verified, setVerified]       = useState(null)
-  const [userEmail, setUserEmail]     = useState('')
-  const [resending, setResending]     = useState(false)
-  const [resent, setResent]           = useState(false)
-  const [products, setProducts]       = useState([])
-  const [showForm, setShowForm]       = useState(false)
-  const [saving, setSaving]           = useState(false)
-  const [paypalEmail, setPaypalEmail] = useState(initialPaypalEmail || '')
-  const [form, setForm]               = useState({ title: '', description: '', price: '' })
+  const [verified, setVerified]         = useState(null)
+  const [userEmail, setUserEmail]       = useState('')
+  const [resending, setResending]       = useState(false)
+  const [resent, setResent]             = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(null)
+  const [termsChecked, setTermsChecked] = useState(false)
+  const [acceptingTerms, setAcceptingTerms] = useState(false)
+  const [products, setProducts]         = useState([])
+  const [showForm, setShowForm]         = useState(false)
+  const [saving, setSaving]             = useState(false)
+  const [paypalEmail, setPaypalEmail]   = useState(initialPaypalEmail || '')
+  const [form, setForm]                 = useState({ title: '', description: '', price: '' })
 
   useEffect(() => {
     async function load() {
@@ -22,6 +25,12 @@ export default function StoreTab({ userId, paypalEmail: initialPaypalEmail, onCh
       setUserEmail(user?.email || '')
       setVerified(!!user?.email_confirmed_at)
       if (user?.email_confirmed_at) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('store_terms_accepted_at')
+          .eq('id', userId)
+          .single()
+        setTermsAccepted(!!profile?.store_terms_accepted_at)
         const { data: prods } = await supabase
           .from('products')
           .select('*')
@@ -32,6 +41,18 @@ export default function StoreTab({ userId, paypalEmail: initialPaypalEmail, onCh
     }
     load()
   }, [userId])
+
+  async function handleAcceptTerms() {
+    if (!termsChecked) return
+    setAcceptingTerms(true)
+    const supabase = createClient()
+    await supabase
+      .from('profiles')
+      .update({ store_terms_accepted_at: new Date().toISOString() })
+      .eq('id', userId)
+    setTermsAccepted(true)
+    setAcceptingTerms(false)
+  }
 
   async function resendVerification() {
     setResending(true)
@@ -75,7 +96,7 @@ export default function StoreTab({ userId, paypalEmail: initialPaypalEmail, onCh
     setProducts(prev => prev.filter(p => p.id !== id))
   }
 
-  if (verified === null) {
+  if (verified === null || termsAccepted === null) {
     return (
       <div className="flex items-center justify-center py-16">
         <i className="ti ti-loader-2 animate-spin text-gray-300 text-2xl" aria-hidden="true"></i>
@@ -113,6 +134,67 @@ export default function StoreTab({ userId, paypalEmail: initialPaypalEmail, onCh
           </button>
         )}
         <p className="text-xs text-gray-400">Una vez verificado, recarga la página.</p>
+      </div>
+    )
+  }
+
+  if (!termsAccepted) {
+    return (
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col items-center text-center gap-2 pt-4">
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: '#f0fdf4' }}>
+            <i className="ti ti-file-text text-2xl" style={{ color: '#16a34a' }} aria-hidden="true"></i>
+          </div>
+          <p className="font-semibold text-gray-800">Activa tu tienda</p>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Antes de vender en Linky debes leer y aceptar los términos de uso para vendedores.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 flex flex-col gap-3 text-xs text-gray-600 leading-relaxed">
+          <p className="font-semibold text-gray-700 text-sm">Resumen de lo que aceptas:</p>
+          <p>• Eres responsable de lo que vendes y tienes los derechos legales para hacerlo.</p>
+          <p>• Cumples con las leyes fiscales de tu país.</p>
+          <p>• No venderás ningún producto o servicio de la lista de artículos prohibidos.</p>
+          <p>• Gestionas tú mismo reembolsos y disputas con compradores.</p>
+          <p>• Linky no procesa pagos ni es parte de tus transacciones.</p>
+        </div>
+
+        <a
+          href="/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 text-sm font-medium py-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
+          style={{ color: '#6c63ff' }}
+        >
+          <i className="ti ti-external-link text-sm" aria-hidden="true"></i>
+          Leer términos completos
+        </a>
+
+        <label className="flex items-start gap-3 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={termsChecked}
+            onChange={e => setTermsChecked(e.target.checked)}
+            className="mt-0.5 w-4 h-4 rounded accent-purple-500 flex-shrink-0"
+          />
+          <span className="text-sm text-gray-600 leading-relaxed">
+            He leído y acepto los{' '}
+            <a href="/terms" target="_blank" rel="noopener noreferrer" className="underline font-medium" style={{ color: '#6c63ff' }}>
+              Términos de Uso de Linky
+            </a>{' '}
+            para vendedores, incluyendo la lista de productos prohibidos.
+          </span>
+        </label>
+
+        <button
+          onClick={handleAcceptTerms}
+          disabled={!termsChecked || acceptingTerms}
+          className="w-full py-3 rounded-xl text-white text-sm font-semibold disabled:opacity-40 transition-opacity"
+          style={{ background: '#6c63ff' }}
+        >
+          {acceptingTerms ? 'Activando...' : 'Activar tienda'}
+        </button>
       </div>
     )
   }
