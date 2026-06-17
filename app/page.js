@@ -231,10 +231,30 @@ export default function Home() {
         @media (prefers-reduced-motion: reduce) {
           .lk-float, .lk-themecard, .lk-arrow { animation: none !important; }
         }
+        @media (max-width: 768px) {
+          .lk-header       { padding: 14px 20px !important; }
+          .lk-header-login { display: none !important; }
+          .lk-hero-inner   { flex-direction: column !important; padding: 52px 24px 40px !important; gap: 36px !important; }
+          .lk-hero-phone   { display: none !important; }
+          .lk-hero-h1      { font-size: 36px !important; line-height: 1.15 !important; }
+          .lk-hero-p       { font-size: 15px !important; }
+          .lk-s2           { padding: 52px 24px !important; }
+          .lk-s2-inner     { flex-direction: column !important; gap: 40px !important; }
+          .lk-s2-h2        { font-size: 30px !important; }
+          .lk-s3           { padding: 52px 24px !important; }
+          .lk-s3-inner     { flex-direction: column !important; gap: 36px !important; }
+          .lk-s3-h2        { font-size: 30px !important; }
+          .lk-theme-cards  { display: none !important; }
+          .lk-s4           { padding: 52px 24px !important; }
+          .lk-three-grid   { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .lk-cta-sec      { padding: 52px 24px !important; }
+          .lk-cta-h2       { font-size: 30px !important; }
+          .lk-footer       { padding: 20px !important; }
+        }
       `}</style>
 
       {/* ── HEADER ── */}
-      <header style={{
+      <header className="lk-header" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '18px 40px', position: 'sticky', top: 0, zIndex: 50,
         background: headerBg, backdropFilter: 'blur(16px)',
@@ -255,7 +275,7 @@ export default function Home() {
           >
             <i className={`ti ${dark ? 'ti-sun' : 'ti-moon'}`} aria-hidden="true" />
           </button>
-          <Link href="/login" className="lk-ghost" style={{
+          <Link href="/login" className="lk-ghost lk-header-login" style={{
             padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 500,
             color: dark ? 'rgba(255,255,255,0.8)' : '#374151',
             border: `1px solid ${border}`, background: cardBg, textDecoration: 'none',
@@ -280,7 +300,7 @@ export default function Home() {
           <div style={{ position: 'absolute', bottom: '-15%', right: '-6%', width: 420, height: 420, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.35), transparent 70%)', filter: 'blur(60px)', animation: 'lk-blob 22s ease-in-out infinite reverse' }} />
         </div>
 
-        <div style={{
+        <div className="lk-hero-inner" style={{
           position: 'relative', zIndex: 1,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '90px 80px', maxWidth: 1200, margin: '0 auto', gap: 60,
@@ -294,7 +314,7 @@ export default function Home() {
               <i className="ti ti-sparkles" aria-hidden="true" /> Tu link en bio, reinventado
             </div>
 
-            <h1 style={{ fontSize: 58, fontWeight: 800, lineHeight: 1.1, marginBottom: 22, color: text }}>
+            <h1 className="lk-hero-h1" style={{ fontSize: 58, fontWeight: 800, lineHeight: 1.1, marginBottom: 22, color: text }}>
               Tu presencia digital,<br />
               <span style={{
                 background: 'linear-gradient(90deg, #6c63ff, #a855f7, #6c63ff)',
@@ -304,7 +324,7 @@ export default function Home() {
               }}>en un solo link.</span>
             </h1>
 
-            <p style={{ fontSize: 18, color: muted, marginBottom: 36, lineHeight: 1.7, maxWidth: 480 }}>
+            <p className="lk-hero-p" style={{ fontSize: 18, color: muted, marginBottom: 36, lineHeight: 1.7, maxWidth: 480 }}>
               Crea tu página personalizada con todos tus links, temas animados y colores únicos. Compártela desde Instagram, TikTok o donde quieras.
             </p>
 
@@ -319,7 +339,7 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal variant="scale" delay={200} style={{ flexShrink: 0 }}>
+          <Reveal variant="scale" delay={200} className="lk-hero-phone" style={{ flexShrink: 0 }}>
             <Parallax speed={0.12}>
               <div style={{ position: 'relative' }}>
                 <div style={{
@@ -335,8 +355,8 @@ export default function Home() {
       </section>
 
       {/* ── SECCIÓN 2 — Crea en minutos ── */}
-      <section style={{ background: dark ? '#1a1a2e' : ACCENT, padding: '80px', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 80 }}>
+      <section className="lk-s2" style={{ background: dark ? '#1a1a2e' : ACCENT, padding: '80px', overflow: 'hidden' }}>
+        <div className="lk-s2-inner" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 80 }}>
           <Reveal variant="left" style={{ flex: 1 }}>
             <Tilt max={8}>
               <div style={{
@@ -371,7 +391,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal variant="right" delay={120} style={{ flex: 1 }}>
-            <h2 style={{ fontSize: 46, fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 18 }}>
+            <h2 className="lk-s2-h2" style={{ fontSize: 46, fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 18 }}>
               Crea y personaliza<br />en minutos
             </h2>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, marginBottom: 30 }}>
@@ -402,11 +422,11 @@ export default function Home() {
       </section>
 
       {/* ── SECCIÓN 3 — Temas ── */}
-      <section style={{ background: dark ? '#0d0d18' : '#1a1a2e', padding: '80px', overflow: 'hidden', position: 'relative' }}>
+      <section className="lk-s3" style={{ background: dark ? '#0d0d18' : '#1a1a2e', padding: '80px', overflow: 'hidden', position: 'relative' }}>
         <div aria-hidden style={{ position: 'absolute', top: '20%', left: '30%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(108,99,255,0.3), transparent 70%)', filter: 'blur(70px)', animation: 'lk-blob 20s ease-in-out infinite' }} />
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 60, position: 'relative', zIndex: 1 }}>
+        <div className="lk-s3-inner" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 60, position: 'relative', zIndex: 1 }}>
           <Reveal variant="left" style={{ flex: 1 }}>
-            <h2 style={{ fontSize: 46, fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 18 }}>
+            <h2 className="lk-s3-h2" style={{ fontSize: 46, fontWeight: 800, color: '#fff', lineHeight: 1.15, marginBottom: 18 }}>
               Tu estilo,<br />
               <span style={{ color: ACCENT }}>tus reglas.</span>
             </h2>
@@ -422,7 +442,7 @@ export default function Home() {
             </Link>
           </Reveal>
 
-          <Parallax speed={0.08} style={{ maxWidth: 560 }}>
+          <Parallax speed={0.08} className="lk-theme-cards" style={{ maxWidth: 560 }}>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
               {THEMES_SHOWCASE.map((t, i) => (
                 <Reveal key={i} variant="scale" delay={i * 80}><ThemeCard theme={t} index={i} /></Reveal>
@@ -433,7 +453,7 @@ export default function Home() {
       </section>
 
       {/* ── SECCIÓN 4 — Cómo funciona ── */}
-      <section style={{ padding: '80px', background: bg }}>
+      <section className="lk-s4" style={{ padding: '80px', background: bg }}>
         <div style={{ maxWidth: 960, margin: '0 auto', textAlign: 'center' }}>
           <Reveal variant="up">
             <div style={{
@@ -451,7 +471,7 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="lk-three-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
             {[
               { num: '01', icon: 'ti-user-plus',  title: 'Crea tu cuenta',       desc: 'Regístrate gratis con email o Google. Elige tu nombre de usuario único.' },
               { num: '02', icon: 'ti-palette',    title: 'Personaliza tu página', desc: 'Agrega tus links, elige temas animados, colores y ajusta cada detalle.' },
@@ -482,13 +502,13 @@ export default function Home() {
       </section>
 
       {/* ── CTA FINAL ── */}
-      <section style={{
+      <section className="lk-cta-sec" style={{
         padding: '80px', textAlign: 'center', position: 'relative', overflow: 'hidden',
         background: dark ? '#1a1a2e' : 'linear-gradient(135deg, #f4f3ff, #ede9ff)',
       }}>
         <div aria-hidden style={{ position: 'absolute', top: '-30%', left: '50%', transform: 'translateX(-50%)', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, ${ACCENT}30, transparent 70%)`, filter: 'blur(70px)', animation: 'lk-blob 16s ease-in-out infinite' }} />
         <Reveal variant="scale" style={{ maxWidth: 580, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <h2 style={{ fontSize: 46, fontWeight: 800, color: text, lineHeight: 1.15, marginBottom: 18 }}>
+          <h2 className="lk-cta-h2" style={{ fontSize: 46, fontWeight: 800, color: text, lineHeight: 1.15, marginBottom: 18 }}>
             ¿Listo para tu<br />
             <span style={{ color: ACCENT }}>página Linky?</span>
           </h2>
@@ -506,7 +526,7 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{
+      <footer className="lk-footer" style={{
         padding: '24px 40px', textAlign: 'center', fontSize: 13, color: muted,
         borderTop: `1px solid ${border}`,
         background: dark ? '#0f0f13' : '#f4f3ff',

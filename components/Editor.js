@@ -144,8 +144,15 @@ export default function Editor({ profile: initialProfile, links: initialLinks, u
         `}</style>
       )}
 
+      <style>{`
+        @media (max-width: 768px) {
+          .editor-aside   { width: 100% !important; }
+          .editor-preview { display: none !important; }
+        }
+      `}</style>
+
       <div className={`flex h-screen overflow-hidden${D ? ' editor-dark' : ''}`} style={{ background: D ? '#0f0f13' : '#f8f7ff' }}>
-        <aside className="w-96 flex-shrink-0 flex flex-col h-full" style={{ background: D ? '#1a1a22' : '#ffffff', borderRight: `1px solid ${D ? 'rgba(255,255,255,0.07)' : '#f3f4f6'}` }}>
+        <aside className="editor-aside w-96 flex-shrink-0 flex flex-col h-full" style={{ background: D ? '#1a1a22' : '#ffffff', borderRight: `1px solid ${D ? 'rgba(255,255,255,0.07)' : '#f3f4f6'}` }}>
 
           <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: `1px solid ${D ? 'rgba(255,255,255,0.07)' : '#f3f4f6'}` }}>
             <div className="text-lg font-bold" style={{ color: '#6c63ff' }}>Linky</div>
@@ -220,7 +227,7 @@ export default function Editor({ profile: initialProfile, links: initialLinks, u
           </div>
         </aside>
 
-        <main className="flex-1 flex items-center justify-center p-8 overflow-y-auto" style={{ background: D ? '#13131a' : '#ede9ff' }}>
+        <main className="editor-preview flex-1 flex items-center justify-center p-8 overflow-y-auto" style={{ background: D ? '#13131a' : '#ede9ff' }}>
           <div className="flex flex-col items-center gap-6">
             <PhonePreview profile={profile} links={links} />
 
