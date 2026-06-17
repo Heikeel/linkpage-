@@ -28,7 +28,47 @@ function ShareButton({ dark }) {
   )
 }
 
-function ThemeLight({ profile, links, isOwner, username }) {
+function ProductsSection({ products, dark, paypalEmail }) {
+  if (!products || products.length === 0) return null
+  const cardBg     = dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.04)'
+  const cardBorder = dark ? 'rgba(255,255,255,0.1)'  : 'rgba(0,0,0,0.08)'
+  const titleColor = dark ? 'rgba(255,255,255,0.9)'  : '#1f2937'
+  const descColor  = dark ? 'rgba(255,255,255,0.4)'  : '#6b7280'
+  const labelColor = dark ? 'rgba(255,255,255,0.28)' : 'rgba(0,0,0,0.3)'
+  return (
+    <div className="mt-8">
+      <p className="text-xs font-semibold uppercase tracking-widest text-center mb-4" style={{ color: labelColor }}>
+        Tienda
+      </p>
+      <div className="flex flex-col gap-3">
+        {products.map(p => {
+          const email = paypalEmail || ''
+          const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(email)}&amount=${p.price}&currency_code=USD&item_name=${encodeURIComponent(p.title)}&no_note=1&no_shipping=2`
+          return (
+            <div key={p.id} className="flex items-center gap-3 px-4 py-3.5 rounded-xl" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-sm" style={{ color: titleColor }}>{p.title}</p>
+                {p.description && <p className="text-xs mt-0.5 truncate" style={{ color: descColor }}>{p.description}</p>}
+              </div>
+              <a
+                href={paypalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-white transition-opacity hover:opacity-85"
+                style={{ background: '#0070ba' }}
+              >
+                <i className="ti ti-brand-paypal text-sm" aria-hidden="true"></i>
+                ${Number(p.price).toFixed(2)}
+              </a>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function ThemeLight({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -64,6 +104,8 @@ function ThemeLight({ profile, links, isOwner, username }) {
           {(!links || links.length === 0) && <p className="text-center text-sm py-6 text-gray-400">Sin links por ahora</p>}
         </div>
 
+        <ProductsSection products={products} dark={false} paypalEmail={profile.paypal_email} />
+
         <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
           <ShareButton dark={false} />
           {isOwner ? (
@@ -81,7 +123,7 @@ function ThemeLight({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeDark({ profile, links, isOwner, username }) {
+function ThemeDark({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -117,6 +159,8 @@ function ThemeDark({ profile, links, isOwner, username }) {
           {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.2)' }}>Sin links por ahora</p>}
         </div>
 
+        <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
         <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
           <ShareButton dark={true} />
           {isOwner ? (
@@ -134,7 +178,7 @@ function ThemeDark({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeGradient({ profile, links, isOwner, username }) {
+function ThemeGradient({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -172,6 +216,8 @@ function ThemeGradient({ profile, links, isOwner, username }) {
             {(!links || links.length === 0) && <p className="text-center text-sm py-6 text-gray-400">Sin links por ahora</p>}
           </div>
 
+          <ProductsSection products={products} dark={false} paypalEmail={profile.paypal_email} />
+
           <div className="flex items-center justify-center gap-3 mt-8 flex-wrap">
             <ShareButton dark={false} />
             {isOwner ? (
@@ -190,7 +236,7 @@ function ThemeGradient({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeTornasol({ profile, links, isOwner, username }) {
+function ThemeTornasol({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -277,6 +323,8 @@ function ThemeTornasol({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -336,7 +384,7 @@ const OLAS_BUBBLES = [
   { left: '65%', size: 6,  dur: 8,  delay: 2.8  },
 ]
 
-function ThemeCosmos({ profile, links, isOwner, username }) {
+function ThemeCosmos({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#a78bfa'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -403,6 +451,8 @@ function ThemeCosmos({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -422,7 +472,7 @@ function ThemeCosmos({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeCometas({ profile, links, isOwner, username }) {
+function ThemeCometas({ profile, links, isOwner, username, products }) {
   const accent = profile.accent || '#38bdf8'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -491,6 +541,8 @@ function ThemeCometas({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -510,7 +562,7 @@ function ThemeCometas({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeMatrix({ profile, links, isOwner, username }) {
+function ThemeMatrix({ profile, links, isOwner, username, products }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -582,6 +634,8 @@ function ThemeMatrix({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(0,255,65,0.3)', fontFamily: 'Courier New, monospace' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -601,7 +655,7 @@ function ThemeMatrix({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeSunset({ profile, links, isOwner, username }) {
+function ThemeSunset({ profile, links, isOwner, username, products }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -669,6 +723,8 @@ function ThemeSunset({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,200,150,0.4)' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -688,7 +744,7 @@ function ThemeSunset({ profile, links, isOwner, username }) {
   )
 }
 
-function ThemeOlas({ profile, links, isOwner, username }) {
+function ThemeOlas({ profile, links, isOwner, username, products }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -765,6 +821,8 @@ function ThemeOlas({ profile, links, isOwner, username }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(125,211,252,0.3)' }}>Sin links por ahora</p>}
             </div>
 
+            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
+
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -784,15 +842,16 @@ function ThemeOlas({ profile, links, isOwner, username }) {
   )
 }
 
-export default function ProfilePage({ profile, links, isOwner, username }) {
+export default function ProfilePage({ profile, links, isOwner, username, products }) {
   const theme = profile.theme || 'light'
-  if (theme === 'dark')      return <ThemeDark      profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'gradient')  return <ThemeGradient  profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'tornasol')  return <ThemeTornasol  profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'cosmos')    return <ThemeCosmos    profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'cometas')   return <ThemeCometas   profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'matrix')    return <ThemeMatrix    profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'sunset')    return <ThemeSunset    profile={profile} links={links} isOwner={isOwner} username={username} />
-  if (theme === 'olas')      return <ThemeOlas      profile={profile} links={links} isOwner={isOwner} username={username} />
-  return <ThemeLight profile={profile} links={links} isOwner={isOwner} username={username} />
+  const p = { profile, links, isOwner, username, products }
+  if (theme === 'dark')      return <ThemeDark      {...p} />
+  if (theme === 'gradient')  return <ThemeGradient  {...p} />
+  if (theme === 'tornasol')  return <ThemeTornasol  {...p} />
+  if (theme === 'cosmos')    return <ThemeCosmos    {...p} />
+  if (theme === 'cometas')   return <ThemeCometas   {...p} />
+  if (theme === 'matrix')    return <ThemeMatrix    {...p} />
+  if (theme === 'sunset')    return <ThemeSunset    {...p} />
+  if (theme === 'olas')      return <ThemeOlas      {...p} />
+  return <ThemeLight {...p} />
 }
