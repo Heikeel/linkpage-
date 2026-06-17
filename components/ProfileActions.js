@@ -44,7 +44,7 @@ export default function ProfileActions({ username, isOwner, accent }) {
           className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-colors"
           style={{ background: 'rgba(255,255,255,0.6)', color: '#555', borderColor: 'rgba(0,0,0,0.1)' }}
         >
-          Crear mi LinkPage gratis →
+          Crear mi Linky gratis →
         </a>
       )}
     </div>

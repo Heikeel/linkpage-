@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #f4f3ff 0%, #ede9ff 100%)' }}>
       <header className="flex items-center justify-between px-8 py-5">
         <div className="text-2xl font-bold" style={{ color: '#6c63ff' }}>
-          Link<span className="font-normal text-gray-700">Page</span>
+          Linky
         </div>
         <div className="flex gap-3">
           <Link href="/login" className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 border border-gray-200 bg-white hover:bg-gray-50 transition-colors">
@@ -45,7 +45,7 @@ export default function Home() {
           {[
             { icon: 'ti-link', title: '46+ redes', desc: 'Todas las plataformas principales' },
             { icon: 'ti-palette', title: 'Personalizable', desc: 'Colores, animaciones y más' },
-            { icon: 'ti-share', title: 'Link único', desc: 'linkpage.com/tuusuario' },
+            { icon: 'ti-share', title: 'Link único', desc: 'linky.com/tuusuario' },
           ].map(f => (
             <div key={f.title} className="text-center">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3" style={{ background: '#ece9ff' }}>
@@ -59,7 +59,7 @@ export default function Home() {
       </main>
 
       <footer className="text-center py-6 text-sm text-gray-400">
-        LinkPage · Hecho con ♥
+        Linky · Hecho con ♥
       </footer>
     </div>
   )

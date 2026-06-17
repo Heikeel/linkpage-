@@ -63,7 +63,7 @@ export default function PickUsernamePage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="text-2xl font-bold mb-4" style={{ color: '#6c63ff' }}>
-            Link<span className="font-normal text-gray-700">Page</span>
+            Linky
           </div>
           <h1 className="text-xl font-semibold text-gray-800">Elige tu usuario</h1>
           <p className="text-gray-500 text-sm mt-1">Este será tu link único para compartir</p>
@@ -105,7 +105,7 @@ export default function PickUsernamePage() {
               </div>
               {username.length >= 3 && !checking && (
                 <p className={`text-xs mt-1 ${available ? 'text-green-600' : 'text-red-500'}`}>
-                  {available ? `linkpage.com/${username} está disponible` : 'Ese usuario ya está tomado'}
+                  {available ? `linky.com/${username} está disponible` : 'Ese usuario ya está tomado'}
                 </p>
               )}
             </div>
@@ -115,7 +115,7 @@ export default function PickUsernamePage() {
               className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-50 mt-2"
               style={{ background: '#6c63ff' }}
             >
-              {loading ? 'Guardando...' : 'Crear mi LinkPage →'}
+              {loading ? 'Guardando...' : 'Crear mi Linky →'}
             </button>
           </form>
         </div>

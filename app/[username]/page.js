@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
     .from('profiles').select('name, bio').eq('username', username).single()
   if (!profile) return { title: 'Página no encontrada' }
   return {
-    title: `${profile.name || username} | LinkPage`,
+    title: `${profile.name || username} | Linky`,
     description: profile.bio || `Los links de ${profile.name || username}`,
   }
 }

@@ -84,7 +84,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold" style={{ color: '#6c63ff' }}>
-            Link<span className="font-normal text-gray-700">Page</span>
+            Linky
           </Link>
           <h1 className="text-xl font-semibold text-gray-800 mt-4">Crea tu cuenta</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -151,7 +151,7 @@ export default function RegisterPage() {
                   </div>
                   {username.length >= 3 && !checkingUsername && (
                     <p className={`text-xs mt-1 ${usernameAvailable ? 'text-green-600' : 'text-red-500'}`}>
-                      {usernameAvailable ? `linkpage.com/${username} está disponible` : 'Ese usuario ya está tomado'}
+                      {usernameAvailable ? `linky.com/${username} está disponible` : 'Ese usuario ya está tomado'}
                     </p>
                   )}
                   <p className="text-xs text-gray-400 mt-1">Solo letras, números y guión bajo</p>

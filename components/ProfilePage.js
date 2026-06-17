@@ -72,7 +72,7 @@ function ThemeLight({ profile, links, isOwner, username }) {
             </Link>
           ) : (
             <a href="/" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-colors">
-              Crear mi LinkPage →
+              Crear mi Linky →
             </a>
           )}
         </div>
@@ -125,7 +125,7 @@ function ThemeDark({ profile, links, isOwner, username }) {
             </Link>
           ) : (
             <a href="/" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.12)' }}>
-              Crear mi LinkPage →
+              Crear mi Linky →
             </a>
           )}
         </div>
@@ -180,7 +180,7 @@ function ThemeGradient({ profile, links, isOwner, username }) {
               </Link>
             ) : (
               <a href="/" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-colors">
-                Crear mi LinkPage →
+                Crear mi Linky →
               </a>
             )}
           </div>
@@ -285,7 +285,7 @@ function ThemeTornasol({ profile, links, isOwner, username }) {
                 </Link>
               ) : (
                 <a href="/" className="glass-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">
-                  Crear mi LinkPage →
+                  Crear mi Linky →
                 </a>
               )}
             </div>
@@ -376,7 +376,7 @@ function ThemeCosmos({ profile, links, isOwner, username }) {
                 </Link>
               ) : (
                 <a href="/" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  Crear mi LinkPage →
+                  Crear mi Linky →
                 </a>
               )}
             </div>
@@ -464,7 +464,7 @@ function ThemeCometas({ profile, links, isOwner, username }) {
                 </Link>
               ) : (
                 <a href="/" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-colors" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  Crear mi LinkPage →
+                  Crear mi Linky →
                 </a>
               )}
             </div>

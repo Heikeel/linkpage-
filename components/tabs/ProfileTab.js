@@ -207,7 +207,7 @@ export default function ProfileTab({ data, onChange, userId }) {
       <div>
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Usuario</label>
         <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-gray-200 bg-gray-50">
-          <span className="text-sm text-gray-400">linkpage.com/</span>
+          <span className="text-sm text-gray-400">linky.com/</span>
           <span className="text-sm font-semibold text-gray-700">{data.username}</span>
         </div>
       </div>

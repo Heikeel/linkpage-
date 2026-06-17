@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "LinkPage — Tu página de links",
+  title: "Linky — Tu página de links",
   description: "Crea tu página de links personalizada y compártela con el mundo",
 };
 

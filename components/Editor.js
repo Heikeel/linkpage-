@@ -105,7 +105,7 @@ export default function Editor({ profile: initialProfile, links: initialLinks, u
       <aside className="w-96 flex-shrink-0 bg-white border-r border-gray-100 flex flex-col h-full">
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <div className="text-lg font-bold" style={{ color: '#6c63ff' }}>
-            Link<span className="font-normal text-gray-700">Page</span>
+            Linky
           </div>
           <div className="flex gap-2">
             <a
