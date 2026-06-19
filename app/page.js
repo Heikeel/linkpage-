@@ -176,28 +176,20 @@ export default function Home() {
 
         setHeaderSolid(sy > 40)
 
-        /* ── Scene 1: Hero ── */
+        /* ── Scene 1: Hero — visible desde el inicio, sale al scrollear ── */
         const p1 = prog(heroWrap)
-        const fadeOut = clamp((p1 - .55) / .35, 0, 1)
-        const slideUp = fadeOut * 60
+        const fadeOut = clamp((p1 - .6) / .3, 0, 1)
+        const slideUp = fadeOut * 50
 
-        const applyFade = (r, d = 0) => {
+        const heroEls = [heroTag, heroH1, heroSub, heroBtn]
+        heroEls.forEach((r, i) => {
           if (!r.current) return
-          const enter = clamp((p1 - d) / .25, 0, 1)
-          const opacity = clamp(enter - fadeOut * 1.6, 0, 1)
-          r.current.style.opacity = opacity
-          r.current.style.transform = `translateY(${(1 - enter) * 40 - slideUp}px)`
-        }
-        applyFade(heroTag,   0)
-        applyFade(heroH1,    .04)
-        applyFade(heroSub,   .09)
-        applyFade(heroBtn,   .13)
-
+          r.current.style.opacity = 1 - fadeOut
+          r.current.style.transform = `translateY(${-slideUp * (1 + i * .15)}px)`
+        })
         if (heroPhone.current) {
-          const enter = clamp(p1 / .3, 0, 1)
-          const op = clamp(enter - fadeOut * 1.4, 0, 1)
-          heroPhone.current.style.opacity = op
-          heroPhone.current.style.transform = `translateY(${(1 - enter) * 80 - slideUp * .6}px) scale(${.88 + enter * .12})`
+          heroPhone.current.style.opacity = 1 - fadeOut * .8
+          heroPhone.current.style.transform = `translateY(${-slideUp * .5}px)`
         }
 
         /* ── Scene 2: Links animate ── */
@@ -206,14 +198,14 @@ export default function Home() {
         setVisibleLinks(newCount)
 
         if (linksLeft.current) {
-          const op = clamp(p2 / .25, 0, 1)
+          const op = clamp(p2 / .15, 0, 1)
           linksLeft.current.style.opacity = op
-          linksLeft.current.style.transform = `translateX(${(1 - op) * -50}px)`
+          linksLeft.current.style.transform = `translateX(${(1 - op) * -40}px)`
         }
         if (linksPhone.current) {
-          const op = clamp(p2 / .2, 0, 1)
+          const op = clamp(p2 / .12, 0, 1)
           linksPhone.current.style.opacity = op
-          linksPhone.current.style.transform = `translateX(${(1 - op) * 50}px)`
+          linksPhone.current.style.transform = `translateX(${(1 - op) * 40}px)`
         }
 
         /* ── Scene 3: Themes ── */
@@ -222,12 +214,12 @@ export default function Home() {
         setThemeIdx(Math.min(ti, PHONE_THEMES.length - 1))
 
         if (themesLeft.current) {
-          const op = clamp(p3 / .2, 0, 1)
+          const op = clamp(p3 / .15, 0, 1)
           themesLeft.current.style.opacity = op
-          themesLeft.current.style.transform = `translateY(${(1 - op) * 40}px)`
+          themesLeft.current.style.transform = `translateY(${(1 - op) * 30}px)`
         }
         if (themeCards.current) {
-          const op = clamp(p3 / .25, 0, 1)
+          const op = clamp(p3 / .18, 0, 1)
           themeCards.current.style.opacity = op
           themeCards.current.style.transform = `translateX(${(1 - op) * 60}px)`
         }
@@ -240,9 +232,9 @@ export default function Home() {
           r.current.style.opacity = op
           r.current.style.transform = `translateY(${(1 - op) * 44}px)`
         }
-        applyStep(step1, .05)
-        applyStep(step2, .3)
-        applyStep(step3, .55)
+        applyStep(step1, .02)
+        applyStep(step2, .2)
+        applyStep(step3, .38)
       })
     }
 
@@ -311,7 +303,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           SCENE 1 — HERO
       ══════════════════════════════════════════════════════ */}
-      <div ref={heroWrap} style={{ height: '280vh', position: 'relative' }}>
+      <div ref={heroWrap} style={{ height: '180vh', position: 'relative' }}>
         <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {/* blobs */}
           <Blob top="-10%" left="-8%" color={C1} size={520} delay={0} />
@@ -320,20 +312,20 @@ export default function Home() {
           <div className="lk-hero-cols" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 80px', maxWidth: 1200, width: '100%', gap: 60 }}>
             {/* Left */}
             <div style={{ flex: 1 }}>
-              <div ref={heroTag} style={{ opacity: 0, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, fontSize: 13, fontWeight: 600, background: 'rgba(108,99,255,.18)', color: C1, marginBottom: 28, border: '1px solid rgba(108,99,255,.25)' }}>
+              <div ref={heroTag} style={{ opacity: 1, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, fontSize: 13, fontWeight: 600, background: 'rgba(108,99,255,.18)', color: C1, marginBottom: 28, border: '1px solid rgba(108,99,255,.25)' }}>
                 <i className="ti ti-sparkles" /> Tu link en bio, reinventado
               </div>
 
-              <h1 ref={heroH1} className="lk-hero-h1" style={{ opacity: 0, fontSize: 62, fontWeight: 900, lineHeight: 1.08, marginBottom: 22, letterSpacing: '-1.5px' }}>
+              <h1 ref={heroH1} className="lk-hero-h1" style={{ opacity: 1, fontSize: 62, fontWeight: 900, lineHeight: 1.08, marginBottom: 22, letterSpacing: '-1.5px' }}>
                 Tu presencia<br />digital,{' '}
                 <span style={{ background: `linear-gradient(90deg,${C1},${C2},${C1})`, backgroundSize: '200% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', animation: 'shimmer 4s linear infinite' }}>en un solo link.</span>
               </h1>
 
-              <p ref={heroSub} style={{ opacity: 0, fontSize: 18, color: 'rgba(255,255,255,.55)', marginBottom: 36, lineHeight: 1.7, maxWidth: 460 }}>
+              <p ref={heroSub} style={{ opacity: 1, fontSize: 18, color: 'rgba(255,255,255,.55)', marginBottom: 36, lineHeight: 1.7, maxWidth: 460 }}>
                 Crea tu página personalizada con todos tus links, temas animados y colores únicos. Compártela desde cualquier red social.
               </p>
 
-              <div ref={heroBtn} style={{ opacity: 0, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <div ref={heroBtn} style={{ opacity: 1, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <Link href="/register" className="lk-cta" style={{
                   padding: '16px 34px', borderRadius: 14, fontSize: 16, fontWeight: 700,
                   color: '#fff', background: C1, textDecoration: 'none',
@@ -350,7 +342,7 @@ export default function Home() {
             </div>
 
             {/* Right: Phone */}
-            <div ref={heroPhone} className="lk-hero-phone lk-float" style={{ opacity: 0, flexShrink: 0, position: 'relative' }}>
+            <div ref={heroPhone} className="lk-hero-phone lk-float" style={{ opacity: 1, flexShrink: 0, position: 'relative' }}>
               {/* glow halo */}
               <div style={{ position: 'absolute', inset: -50, borderRadius: '50%', background: `radial-gradient(circle,${C1}50,transparent 70%)`, filter: 'blur(40px)' }} />
               <div style={{ position: 'relative' }}>
@@ -370,7 +362,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           SCENE 2 — LINKS ANIMATE
       ══════════════════════════════════════════════════════ */}
-      <div ref={linksWrap} style={{ height: '260vh', position: 'relative' }}>
+      <div ref={linksWrap} style={{ height: '200vh', position: 'relative' }}>
         <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom, transparent, rgba(108,99,255,.04) 50%, transparent)' }}>
           <Blob top="10%" right="-5%" color={C2} size={440} delay={4} />
 
@@ -419,7 +411,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           SCENE 3 — THEMES
       ══════════════════════════════════════════════════════ */}
-      <div ref={themesWrap} style={{ height: '280vh', position: 'relative' }}>
+      <div ref={themesWrap} style={{ height: '200vh', position: 'relative' }}>
         <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,.35)' }}>
           <Blob top="20%" left="25%" color={C1} size={400} delay={8} />
           <Blob bottom="10%" right="15%" color={C2} size={380} delay={2} />
@@ -489,7 +481,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           SCENE 4 — STEPS
       ══════════════════════════════════════════════════════ */}
-      <div ref={stepsWrap} style={{ height: '240vh', position: 'relative' }}>
+      <div ref={stepsWrap} style={{ height: '180vh', position: 'relative' }}>
         <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Blob top="-5%" right="10%" color={C1} size={420} delay={10} />
 
