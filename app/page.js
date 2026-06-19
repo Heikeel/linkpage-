@@ -64,16 +64,35 @@ function Reveal({ children, delay = 0, from = 'up', style, className }) {
 }
 
 /* ─── Phone mockup ─── */
-const LINKS_SECTION2 = [
-  { icon: 'ti-brand-instagram', name: 'Instagram',    color: '#e1306c' },
-  { icon: 'ti-brand-youtube',   name: 'YouTube',      color: '#ff4444' },
-  { icon: 'ti-brand-tiktok',    name: 'TikTok',       color: '#fff' },
-  { icon: 'ti-brand-spotify',   name: 'Spotify',      color: '#1db954' },
-  { icon: 'ti-shopping-cart',   name: 'Mi tienda',    color: C2 },
+const PROFILES = [
+  {
+    name: 'Carlos', handle: '@carlos.dev', bio: 'Dev & Gamer · México', avatar: 'C',
+    avatarGrad: 'linear-gradient(135deg,#6c63ff,#2196f3)',
+    links: [
+      { icon: 'ti-brand-youtube',  name: 'YouTube',   color: '#ff4444' },
+      { icon: 'ti-brand-twitch',   name: 'Twitch',    color: '#9146ff' },
+      { icon: 'ti-brand-github',   name: 'GitHub',    color: '#fff' },
+      { icon: 'ti-brand-linkedin', name: 'LinkedIn',  color: '#0a66c2' },
+      { icon: 'ti-link',           name: 'Portfolio', color: C1 },
+    ],
+  },
+  {
+    name: 'Sara', handle: '@sara.creates', bio: 'Artista · España', avatar: 'S',
+    avatarGrad: 'linear-gradient(135deg,#e1306c,#a855f7)',
+    links: [
+      { icon: 'ti-brand-instagram', name: 'Instagram',  color: '#e1306c' },
+      { icon: 'ti-brand-tiktok',    name: 'TikTok',     color: '#fff' },
+      { icon: 'ti-brand-spotify',   name: 'Spotify',    color: '#1db954' },
+      { icon: 'ti-brand-pinterest', name: 'Pinterest',  color: '#e60023' },
+      { icon: 'ti-shopping-cart',   name: 'Mi tienda',  color: C2 },
+    ],
+  },
 ]
 const PHONE_BGS = ['#0f0f1a', 'linear-gradient(160deg,#0f0c29,#302b63)', 'linear-gradient(160deg,#11998e,#38ef7d20)', 'linear-gradient(160deg,#1a0533,#6c63ff22)']
 
-function Phone({ visibleLinks = 5, bgIdx = 0, scale = 1, name = 'Sara', handle = '@sara.creates', bio = 'Artista · España', avatar = 'S', avatarGrad = 'linear-gradient(135deg,#e1306c,#a855f7)', links = LINKS_SECTION2 }) {
+function Phone({ visibleLinks = 5, bgIdx = 0, scale = 1, profileIdx = 0 }) {
+  const prof = PROFILES[profileIdx] || PROFILES[0]
+  const { name, handle, bio, avatar, avatarGrad, links } = prof
   return (
     <div style={{
       width: 210, height: 430, borderRadius: 38, flexShrink: 0,
@@ -139,6 +158,7 @@ const THEMES = [
 export default function Home() {
   const [visibleLinks, setVisibleLinks]   = useState(0)
   const [phoneBgIdx,   setPhoneBgIdx]     = useState(0)
+  const [profileIdx,   setProfileIdx]     = useState(0)
   const [headerSolid,  setHeaderSolid]    = useState(false)
   const linksSectionRef  = useRef(null)
   const themesSectionRef = useRef(null)
@@ -151,12 +171,14 @@ export default function Home() {
         raf = null
         setHeaderSolid(scrollY > 60)
 
-        // Links section: reveal links as section enters viewport
+        // Links section: reveal links + switch profile halfway through
         if (linksSectionRef.current) {
           const r = linksSectionRef.current.getBoundingClientRect()
-          // start when top hits 80% of viewport, complete after scrolling 45% of viewport height
           const p = Math.max(0, Math.min(1, (innerHeight * 0.8 - r.top) / (innerHeight * 0.45)))
           setVisibleLinks(Math.round(p * 5))
+          // switch profile at 50% scroll progress through section
+          const full = Math.max(0, Math.min(1, 1 - r.bottom / (r.height + innerHeight) * 1.1))
+          setProfileIdx(full >= 0.5 ? 1 : 0)
         }
 
         // Themes section: change phone bg on scroll
@@ -309,7 +331,7 @@ export default function Home() {
           <Reveal from="right" delay={80} className="lk-phone" style={{ flexShrink: 0, position: 'relative' }}>
             <div style={{ position: 'absolute', inset: -40, borderRadius: '50%', background: `radial-gradient(circle,${C2}30,transparent 70%)`, filter: 'blur(50px)' }} />
             <div style={{ position: 'relative' }}>
-              <Phone visibleLinks={visibleLinks} bgIdx={0} />
+              <Phone visibleLinks={visibleLinks} bgIdx={0} profileIdx={profileIdx} />
             </div>
           </Reveal>
         </div>
