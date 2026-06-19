@@ -219,9 +219,9 @@ export default function Home() {
       {/* ══ HERO ══ */}
       <section style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
         {/* AI-generated background */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/hero-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', opacity: 0.55, zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/hero-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', opacity: 0.85, zIndex: 0 }} />
         {/* dark overlay so text stays readable */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(6,6,15,.85) 40%, rgba(6,6,15,.4) 100%)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(6,6,15,.75) 35%, rgba(6,6,15,.2) 100%)', zIndex: 0 }} />
         <Blob style={{ top: '-10%', left: '-8%' }} color={C1} size={520} delay={0} />
         <Blob style={{ bottom: '-15%', right: '-6%' }} color={C2} size={480} delay={6} />
 
@@ -272,8 +272,8 @@ export default function Home() {
 
       {/* ══ LINKS SECTION ══ */}
       <section ref={linksSectionRef} style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/links-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.25, zIndex: 0 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(6,6,15,.7)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/links-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.55, zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(6,6,15,.5)', zIndex: 0 }} />
         <Blob style={{ top: '5%', right: '-5%' }} color={C2} size={440} delay={4} />
 
         <div className="lk-cols" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '80px', maxWidth: 1200, width: '100%', margin: '0 auto', gap: 80 }}>
