@@ -303,10 +303,7 @@ export default function Home() {
       </header>
 
       {/* ══ HERO ══ */}
-      <section style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(6,6,15,.55) 30%, transparent 100%)', zIndex: 0 }} />
-        <Blob style={{ top: '-10%', left: '-8%' }} color={C1} size={520} delay={0} />
-        <Blob style={{ bottom: '-15%', right: '-6%' }} color={C2} size={480} delay={6} />
+      <section style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center' }}>
 
         <div className="lk-cols" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '120px 80px 80px', maxWidth: 1200, width: '100%', margin: '0 auto', gap: 60 }}>
           <div style={{ flex: 1 }}>
@@ -346,16 +343,10 @@ export default function Home() {
           </Reveal>
         </div>
 
-        {/* scroll cue */}
-        <div style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: 'rgba(255,255,255,.2)', fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase' }}>
-          Scroll
-          <div style={{ width: 1, height: 36, background: 'linear-gradient(to bottom,rgba(255,255,255,.3),transparent)', animation: 'scrollLine 1.8s ease-in-out infinite' }} />
-        </div>
       </section>
 
       {/* ══ LINKS SECTION ══ */}
-      <section ref={linksSectionRef} style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <Blob style={{ top: '5%', right: '-5%' }} color={C2} size={440} delay={4} />
+      <section ref={linksSectionRef} style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center' }}>
 
         <div className="lk-cols" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '80px', maxWidth: 1200, width: '100%', margin: '0 auto', gap: 80 }}>
           <Reveal from="left" style={{ flex: 1 }}>
@@ -394,9 +385,7 @@ export default function Home() {
       </section>
 
       {/* ══ THEMES SECTION ══ */}
-      <section ref={themesSectionRef} style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <Blob style={{ top: '15%', left: '20%' }} color={C1} size={400} delay={8} />
-        <Blob style={{ bottom: '10%', right: '10%' }} color={C2} size={360} delay={2} />
+      <section ref={themesSectionRef} style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center' }}>
 
         <div className="lk-cols" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '80px', maxWidth: 1200, width: '100%', margin: '0 auto', gap: 80 }}>
           <Reveal from="left" style={{ flex: 1 }}>
@@ -437,8 +426,7 @@ export default function Home() {
       </section>
 
       {/* ══ STEPS ══ */}
-      <section style={{ padding: '100px 80px', position: 'relative', overflow: 'hidden' }}>
-        <Blob style={{ top: '-10%', right: '5%' }} color={C1} size={400} delay={10} />
+      <section style={{ padding: '100px 80px', position: 'relative' }}>
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
           <Reveal from="up">
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, fontSize: 13, fontWeight: 600, background: 'rgba(108,99,255,.18)', color: C1, marginBottom: 20, border: '1px solid rgba(108,99,255,.2)' }}>
