@@ -44,9 +44,11 @@ export default function ColorsTab({ data, onChange }) {
   const theme = data.theme || 'light'
   const [brightness, setBrightness] = useState(0)
   const [basePalette, setBasePalette] = useState(null)
+  const [hasPicked, setHasPicked] = useState(false)
 
   const palettes = theme === 'dark' ? PALETTES_DARK : PALETTES_LIGHT
-  const showPalettes = theme === 'light' || theme === 'gradient' || theme === 'dark' || theme === 'custom'
+  const isBaseTheme = theme === 'light' || theme === 'gradient' || theme === 'dark' || theme === 'custom'
+  const showPalettes = hasPicked && isBaseTheme
   const iconOverride = !!data.icon_color
   const isAnimatedTheme = ANIMATED_IDS.includes(theme)
   const bgMotion = data.bg_motion || 'none'
@@ -56,6 +58,7 @@ export default function ColorsTab({ data, onChange }) {
     onChange({ theme: id })
     setBasePalette(null)
     setBrightness(0)
+    setHasPicked(true)
   }
 
   function applyPalette(p) {
