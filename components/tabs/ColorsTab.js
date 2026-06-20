@@ -27,8 +27,7 @@ const FIELDS = [
   { key: 'muted',      label: 'Texto suave',   hint: 'Bio y subtítulos' },
 ]
 
-const ESPECIALES_IDS = ['stars']
-const ANIMATED_IDS = [...ESPECIALES_IDS, ...ANIMATED_THEMES.map(t => t.id)]
+const ANIMATED_IDS = ['stars', ...ANIMATED_THEMES.map(t => t.id)]
 
 const BG_MOTIONS = [
   { id: 'aurora',   label: 'Aurora',    icon: 'ti-sparkles' },
@@ -202,6 +201,7 @@ export default function ColorsTab({ data, onChange }) {
         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Con movimiento</p>
         <div className="flex flex-col gap-2">
           {ANIMATED_THEMES.map(t => <ThemeButton key={t.id} t={t} />)}
+          <ThemeButton t={{ id: 'stars', label: 'Stars ✦', desc: 'Cielo estrellado · noche real' }} />
         </div>
       </div>
 

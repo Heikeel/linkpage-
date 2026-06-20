@@ -9,15 +9,13 @@ import LinksTab from '@/components/tabs/LinksTab'
 import ColorsTab from '@/components/tabs/ColorsTab'
 import MotionTab from '@/components/tabs/MotionTab'
 import StoreTab from '@/components/tabs/StoreTab'
-import EspecialesTab from '@/components/tabs/EspecialesTab'
 
 const TABS = [
-  { id: 'profile',    label: 'Perfil',      icon: 'ti-user' },
-  { id: 'links',      label: 'Links',       icon: 'ti-link' },
-  { id: 'colors',     label: 'Colores',     icon: 'ti-palette' },
-  { id: 'motion',     label: 'Movimiento',  icon: 'ti-activity' },
-  { id: 'especiales', label: 'Especiales',  icon: 'ti-sparkles' },
-  { id: 'store',      label: 'Tienda',      icon: 'ti-shopping-bag' },
+  { id: 'profile', label: 'Perfil',     icon: 'ti-user' },
+  { id: 'links',   label: 'Links',      icon: 'ti-link' },
+  { id: 'colors',  label: 'Colores',    icon: 'ti-palette' },
+  { id: 'motion',  label: 'Movimiento', icon: 'ti-activity' },
+  { id: 'store',   label: 'Tienda',     icon: 'ti-shopping-bag' },
 ]
 
 export default function Editor({ profile: initialProfile, links: initialLinks, userId }) {
@@ -214,9 +212,8 @@ export default function Editor({ profile: initialProfile, links: initialLinks, u
             {tab === 'profile'    && <ProfileTab    data={profile} onChange={updateProfile} userId={userId} />}
             {tab === 'links'      && <LinksTab      links={links} onLinksChange={handleLinksChange} />}
             {tab === 'colors'     && <ColorsTab     data={profile} onChange={updateProfile} />}
-            {tab === 'motion'     && <MotionTab     data={profile} onChange={updateProfile} />}
-            {tab === 'especiales' && <EspecialesTab data={profile} onChange={updateProfile} />}
-            {tab === 'store'      && <StoreTab      userId={userId} paypalEmail={profile.paypal_email} onChange={updateProfile} />}
+            {tab === 'motion'  && <MotionTab  data={profile} onChange={updateProfile} />}
+            {tab === 'store'   && <StoreTab   userId={userId} paypalEmail={profile.paypal_email} onChange={updateProfile} />}
           </div>
 
           <div className="p-4 flex items-center justify-between" style={{ borderTop: `1px solid ${D ? 'rgba(255,255,255,0.07)' : '#f3f4f6'}` }}>
