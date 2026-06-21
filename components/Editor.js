@@ -13,7 +13,7 @@ import StoreTab from '@/components/tabs/StoreTab'
 const TABS = [
   { id: 'profile', label: 'Perfil',     icon: 'ti-user' },
   { id: 'links',   label: 'Links',      icon: 'ti-link' },
-  { id: 'colors',  label: 'Colores',    icon: 'ti-palette' },
+  { id: 'colors',  label: 'Temas',       icon: 'ti-palette' },
   { id: 'motion',  label: 'Movimiento', icon: 'ti-activity' },
   { id: 'store',   label: 'Tienda',     icon: 'ti-shopping-bag' },
 ]
