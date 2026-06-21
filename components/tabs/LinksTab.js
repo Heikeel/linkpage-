@@ -25,6 +25,39 @@ function sectionOf(link) {
   return 'social'
 }
 
+function LinkRow({ link, idx, onUpdate, onRemove, onDragStart, onDragOver, onDragEnd }) {
+  const [url, setUrl] = useState(link.url || '')
+  return (
+    <div
+      draggable
+      onDragStart={() => onDragStart(idx)}
+      onDragOver={e => onDragOver(e, idx)}
+      onDragEnd={onDragEnd}
+      className="flex items-center gap-2.5 p-2.5 border border-gray-200 rounded-xl bg-gray-50 cursor-grab active:cursor-grabbing"
+    >
+      <i className="ti ti-grip-vertical text-gray-300 text-base flex-shrink-0" aria-hidden="true"></i>
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: link.color + '22', color: link.color }}>
+        <i className={`ti ${link.icon} text-base`} aria-hidden="true"></i>
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-xs font-semibold text-gray-700">{link.name}</p>
+        <input
+          type="url"
+          value={url}
+          onChange={e => setUrl(e.target.value)}
+          onBlur={() => onUpdate(link.id, url)}
+          placeholder="https://..."
+          onClick={e => e.stopPropagation()}
+          className="w-full text-xs text-gray-400 bg-transparent outline-none placeholder:text-gray-300 mt-0.5"
+        />
+      </div>
+      <button onClick={() => onRemove(link.id)} className="p-1 rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-50 transition-colors flex-shrink-0">
+        <i className="ti ti-x text-sm" aria-hidden="true"></i>
+      </button>
+    </div>
+  )
+}
+
 export default function LinksTab({ links, onLinksChange }) {
   const [modalOpen, setModalOpen] = useState(false)
   const [showCustomForm, setShowCustomForm] = useState(false)
@@ -99,37 +132,6 @@ export default function LinksTab({ links, onLinksChange }) {
     items: links.map((link, idx) => ({ link, idx })).filter(({ link }) => sectionOf(link) === sec.key),
   })).filter(g => g.items.length > 0)
 
-  function LinkRow({ link, idx }) {
-    return (
-      <div
-        draggable
-        onDragStart={() => onDragStart(idx)}
-        onDragOver={e => onDragOver(e, idx)}
-        onDragEnd={() => setDragIdx(null)}
-        className="flex items-center gap-2.5 p-2.5 border border-gray-200 rounded-xl bg-gray-50 cursor-grab active:cursor-grabbing"
-      >
-        <i className="ti ti-grip-vertical text-gray-300 text-base flex-shrink-0" aria-hidden="true"></i>
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: link.color + '22', color: link.color }}>
-          <i className={`ti ${link.icon} text-base`} aria-hidden="true"></i>
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-xs font-semibold text-gray-700">{link.name}</p>
-          <input
-            type="url"
-            value={link.url || ''}
-            onChange={e => updateUrl(link.id, e.target.value)}
-            placeholder="https://..."
-            onClick={e => e.stopPropagation()}
-            className="w-full text-xs text-gray-400 bg-transparent outline-none placeholder:text-gray-300 mt-0.5"
-          />
-        </div>
-        <button onClick={() => removeLink(link.id)} className="p-1 rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-50 transition-colors flex-shrink-0">
-          <i className="ti ti-x text-sm" aria-hidden="true"></i>
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div className="flex flex-col gap-4">
       <p className="text-xs text-gray-400">Arrastra para reordenar · Escribe la URL de cada elemento</p>
@@ -142,7 +144,13 @@ export default function LinksTab({ links, onLinksChange }) {
             <span className="text-gray-300 font-normal">· {group.items.length}</span>
           </p>
           {group.items.map(({ link, idx }) => (
-            <LinkRow key={link.id} link={link} idx={idx} />
+            <LinkRow key={link.id} link={link} idx={idx}
+              onUpdate={updateUrl}
+              onRemove={removeLink}
+              onDragStart={onDragStart}
+              onDragOver={onDragOver}
+              onDragEnd={() => setDragIdx(null)}
+            />
           ))}
         </div>
       ))}
