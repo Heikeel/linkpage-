@@ -27,7 +27,7 @@ const FIELDS = [
   { key: 'muted',      label: 'Texto suave',   hint: 'Bio y subtítulos' },
 ]
 
-const ANIMATED_IDS = ['stars', 'desert', 'aurora', 'ocean', 'sakura', 'nebulosa', 'glaciar', 'abismo', 'montana', 'neon', 'zen', 'tormenta', 'marte', 'loto', ...ANIMATED_THEMES.map(t => t.id)]
+const ANIMATED_IDS = ['stars', 'desert', 'aurora', 'ocean', 'sakura', 'nebulosa', 'glaciar', 'montana', 'zen', 'tormenta', 'marte', 'loto', ...ANIMATED_THEMES.map(t => t.id)]
 
 const BG_MOTIONS = [
   { id: 'aurora',   label: 'Aurora',    icon: 'ti-sparkles' },
@@ -201,20 +201,18 @@ export default function ColorsTab({ data, onChange }) {
         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Con movimiento</p>
         <div className="flex flex-col gap-2">
           {ANIMATED_THEMES.map(t => <ThemeButton key={t.id} t={t} />)}
-          <ThemeButton t={{ id: 'stars',  label: 'Stars ✦',    desc: 'Cielo estrellado · noche real' }} />
-          <ThemeButton t={{ id: 'desert', label: 'Desierto',   desc: 'Dunas al atardecer · cálido' }} />
-          <ThemeButton t={{ id: 'aurora', label: 'Aurora',     desc: 'Luces del norte · lago' }} />
-          <ThemeButton t={{ id: 'ocean',  label: 'Océano',     desc: 'Profundidad marina · bioluminiscencia' }} />
-          <ThemeButton t={{ id: 'sakura',   label: 'Sakura 🌸',    desc: 'Cerezos japoneses · video al vivo' }} />
-          <ThemeButton t={{ id: 'nebulosa', label: 'Nebulosa 🌌', desc: 'Galaxia morada · espacio profundo' }} />
-          <ThemeButton t={{ id: 'glaciar',  label: 'Glaciar 🧊',  desc: 'Hielo azul · reflejo en agua' }} />
-          <ThemeButton t={{ id: 'abismo',   label: 'Abismo 🌊',   desc: 'Fondo marino · rayos de luz' }} />
-          <ThemeButton t={{ id: 'montana',  label: 'Montaña 🏔️',  desc: 'Picos nevados · atardecer dorado' }} />
-          <ThemeButton t={{ id: 'neon',     label: 'Neon 🌃',     desc: 'Ciudad lluvia · luces nocturnas' }} />
-          <ThemeButton t={{ id: 'zen',      label: 'Zen 🪨',      desc: 'Jardín japonés · amanecer' }} />
-          <ThemeButton t={{ id: 'tormenta', label: 'Tormenta ⚡',  desc: 'Océano oscuro · relámpago lejano' }} />
-          <ThemeButton t={{ id: 'marte',    label: 'Marte 🔴',    desc: 'Desierto rojo · cielo carmesí' }} />
-          <ThemeButton t={{ id: 'loto',     label: 'Loto 🪷',     desc: 'Flor rosa · lago neblinoso' }} />
+          <ThemeButton t={{ id: 'stars',    label: 'Stars ✦',   desc: 'Cielo estrellado · noche real' }} />
+          <ThemeButton t={{ id: 'desert',   label: 'Desierto',  desc: 'Dunas al atardecer · cálido' }} />
+          <ThemeButton t={{ id: 'aurora',   label: 'Aurora',    desc: 'Luces del norte · lago' }} />
+          <ThemeButton t={{ id: 'ocean',    label: 'Océano',    desc: 'Profundidad marina · bioluminiscencia' }} />
+          <ThemeButton t={{ id: 'sakura',   label: 'Sakura',    desc: 'Cerezos japoneses · video al vivo' }} />
+          <ThemeButton t={{ id: 'nebulosa', label: 'Nebulosa',  desc: 'Galaxia morada · espacio profundo' }} />
+          <ThemeButton t={{ id: 'glaciar',  label: 'Glaciar',   desc: 'Hielo azul · reflejo en agua' }} />
+          <ThemeButton t={{ id: 'montana',  label: 'Montaña',   desc: 'Picos nevados · atardecer dorado' }} />
+          <ThemeButton t={{ id: 'zen',      label: 'Zen',       desc: 'Jardín japonés · amanecer' }} />
+          <ThemeButton t={{ id: 'tormenta', label: 'Tormenta',  desc: 'Océano oscuro · relámpago lejano' }} />
+          <ThemeButton t={{ id: 'marte',    label: 'Marte',     desc: 'Desierto rojo · cielo carmesí' }} />
+          <ThemeButton t={{ id: 'loto',     label: 'Loto',      desc: 'Flor rosa · lago neblinoso' }} />
         </div>
       </div>
 

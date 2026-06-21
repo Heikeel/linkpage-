@@ -520,34 +520,6 @@ export default function PhonePreview({ profile, links }) {
       )
     }
 
-    if (theme === 'abismo') {
-      return (
-        <div className="relative overflow-hidden" style={{ background: '#000d12 url(/abismo.jpg) center/cover no-repeat', minHeight: 520 }}>
-          <div className="relative z-10 p-4 pb-6">
-            <div className="text-center mb-5">
-              <Avatar size={16} border="rgba(6,182,212,0.5)" />
-              <p className="text-sm font-bold text-white" style={{ textShadow: '0 0 20px rgba(6,182,212,0.7)' }}>{name}</p>
-              {username && <p className="text-xs font-semibold mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>@{username}</p>}
-              {bio && <p className="text-xs mt-1.5 leading-relaxed px-2" style={{ color: 'rgba(255,255,255,0.6)' }}>{bio}</p>}
-            </div>
-            <div className="flex flex-col" style={{ gap }}>
-              {links.length === 0
-                ? <div className="text-center py-6 text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>Añade links desde &quot;Links&quot;</div>
-                : links.map(link => (
-                  <div key={link.id} className={`flex items-center gap-2.5 px-3 py-2.5 anim-${anim}`}
-                    style={{ background: 'rgba(255,255,255,0.06)', borderRadius: radius, border: '1px solid rgba(6,182,212,0.2)', backdropFilter: 'blur(16px)' }}>
-                    <i className={`ti ${link.icon} text-lg flex-shrink-0`} style={{ color: iconOverride || safeIconColor(link.color, '#000d12') }} aria-hidden="true"></i>
-                    <span className="text-xs font-semibold flex-1" style={{ color: 'rgba(255,255,255,0.9)' }}>{link.name}</span>
-                    <i className="ti ti-chevron-right text-xs" style={{ color: 'rgba(255,255,255,0.3)' }} aria-hidden="true"></i>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      )
-    }
-
     if (theme === 'montana') {
       return (
         <div className="relative overflow-hidden" style={{ background: '#0d0a05 url(/montana.jpg) center/cover no-repeat', minHeight: 520 }}>
@@ -565,34 +537,6 @@ export default function PhonePreview({ profile, links }) {
                   <div key={link.id} className={`flex items-center gap-2.5 px-3 py-2.5 anim-${anim}`}
                     style={{ background: 'rgba(255,255,255,0.06)', borderRadius: radius, border: '1px solid rgba(249,115,22,0.2)', backdropFilter: 'blur(16px)' }}>
                     <i className={`ti ${link.icon} text-lg flex-shrink-0`} style={{ color: iconOverride || safeIconColor(link.color, '#0d0a05') }} aria-hidden="true"></i>
-                    <span className="text-xs font-semibold flex-1" style={{ color: 'rgba(255,255,255,0.9)' }}>{link.name}</span>
-                    <i className="ti ti-chevron-right text-xs" style={{ color: 'rgba(255,255,255,0.3)' }} aria-hidden="true"></i>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      )
-    }
-
-    if (theme === 'neon') {
-      return (
-        <div className="relative overflow-hidden" style={{ background: '#05020f url(/neon.jpg) center/cover no-repeat', minHeight: 520 }}>
-          <div className="relative z-10 p-4 pb-6">
-            <div className="text-center mb-5">
-              <Avatar size={16} border="rgba(192,132,252,0.5)" />
-              <p className="text-sm font-bold text-white" style={{ textShadow: '0 0 20px rgba(192,132,252,0.8)' }}>{name}</p>
-              {username && <p className="text-xs font-semibold mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>@{username}</p>}
-              {bio && <p className="text-xs mt-1.5 leading-relaxed px-2" style={{ color: 'rgba(255,255,255,0.6)' }}>{bio}</p>}
-            </div>
-            <div className="flex flex-col" style={{ gap }}>
-              {links.length === 0
-                ? <div className="text-center py-6 text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>Añade links desde &quot;Links&quot;</div>
-                : links.map(link => (
-                  <div key={link.id} className={`flex items-center gap-2.5 px-3 py-2.5 anim-${anim}`}
-                    style={{ background: 'rgba(255,255,255,0.06)', borderRadius: radius, border: '1px solid rgba(192,132,252,0.25)', backdropFilter: 'blur(16px)' }}>
-                    <i className={`ti ${link.icon} text-lg flex-shrink-0`} style={{ color: iconOverride || safeIconColor(link.color, '#05020f') }} aria-hidden="true"></i>
                     <span className="text-xs font-semibold flex-1" style={{ color: 'rgba(255,255,255,0.9)' }}>{link.name}</span>
                     <i className="ti ti-chevron-right text-xs" style={{ color: 'rgba(255,255,255,0.3)' }} aria-hidden="true"></i>
                   </div>
