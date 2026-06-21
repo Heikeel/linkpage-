@@ -33,19 +33,12 @@ export default async function PublicProfilePage({ params }) {
     .eq('active', true)
     .order('order_index')
 
-  const { data: products } = await supabase
-    .from('products').select('*')
-    .eq('profile_id', profile.id)
-    .eq('active', true)
-    .order('created_at', { ascending: false })
-
   return (
     <ProfilePage
       profile={profile}
       links={links}
       isOwner={isOwner}
       username={username}
-      products={products || []}
     />
   )
 }

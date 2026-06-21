@@ -28,47 +28,8 @@ function ShareButton({ dark }) {
   )
 }
 
-function ProductsSection({ products, dark, paypalEmail }) {
-  if (!products || products.length === 0) return null
-  const cardBg     = dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.04)'
-  const cardBorder = dark ? 'rgba(255,255,255,0.1)'  : 'rgba(0,0,0,0.08)'
-  const titleColor = dark ? 'rgba(255,255,255,0.9)'  : '#1f2937'
-  const descColor  = dark ? 'rgba(255,255,255,0.4)'  : '#6b7280'
-  const labelColor = dark ? 'rgba(255,255,255,0.28)' : 'rgba(0,0,0,0.3)'
-  return (
-    <div className="mt-8">
-      <p className="text-xs font-semibold uppercase tracking-widest text-center mb-4" style={{ color: labelColor }}>
-        Tienda
-      </p>
-      <div className="flex flex-col gap-3">
-        {products.map(p => {
-          const email = paypalEmail || ''
-          const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(email)}&amount=${p.price}&currency_code=USD&item_name=${encodeURIComponent(p.title)}&no_note=1&no_shipping=2`
-          return (
-            <div key={p.id} className="flex items-center gap-3 px-4 py-3.5 rounded-xl" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-sm" style={{ color: titleColor }}>{p.title}</p>
-                {p.description && <p className="text-xs mt-0.5 truncate" style={{ color: descColor }}>{p.description}</p>}
-              </div>
-              <a
-                href={paypalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-white transition-opacity hover:opacity-85"
-                style={{ background: '#0070ba' }}
-              >
-                <i className="ti ti-brand-paypal text-sm" aria-hidden="true"></i>
-                ${Number(p.price).toFixed(2)}
-              </a>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
-function ThemeLight({ profile, links, isOwner, username, products }) {
+function ThemeLight({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -104,8 +65,6 @@ function ThemeLight({ profile, links, isOwner, username, products }) {
           {(!links || links.length === 0) && <p className="text-center text-sm py-6 text-gray-400">Sin links por ahora</p>}
         </div>
 
-        <ProductsSection products={products} dark={false} paypalEmail={profile.paypal_email} />
-
         <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
           <ShareButton dark={false} />
           {isOwner ? (
@@ -123,7 +82,7 @@ function ThemeLight({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeDark({ profile, links, isOwner, username, products }) {
+function ThemeDark({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -159,8 +118,6 @@ function ThemeDark({ profile, links, isOwner, username, products }) {
           {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.2)' }}>Sin links por ahora</p>}
         </div>
 
-        <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
         <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
           <ShareButton dark={true} />
           {isOwner ? (
@@ -178,7 +135,7 @@ function ThemeDark({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeGradient({ profile, links, isOwner, username, products }) {
+function ThemeGradient({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -216,8 +173,6 @@ function ThemeGradient({ profile, links, isOwner, username, products }) {
             {(!links || links.length === 0) && <p className="text-center text-sm py-6 text-gray-400">Sin links por ahora</p>}
           </div>
 
-          <ProductsSection products={products} dark={false} paypalEmail={profile.paypal_email} />
-
           <div className="flex items-center justify-center gap-3 mt-8 flex-wrap">
             <ShareButton dark={false} />
             {isOwner ? (
@@ -236,7 +191,7 @@ function ThemeGradient({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeTornasol({ profile, links, isOwner, username, products }) {
+function ThemeTornasol({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#6c63ff'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -323,8 +278,6 @@ function ThemeTornasol({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -384,7 +337,7 @@ const OLAS_BUBBLES = [
   { left: '65%', size: 6,  dur: 8,  delay: 2.8  },
 ]
 
-function ThemeCosmos({ profile, links, isOwner, username, products }) {
+function ThemeCosmos({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#a78bfa'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -451,8 +404,6 @@ function ThemeCosmos({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -472,7 +423,7 @@ function ThemeCosmos({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeCometas({ profile, links, isOwner, username, products }) {
+function ThemeCometas({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#38bdf8'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -541,8 +492,6 @@ function ThemeCometas({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -562,7 +511,7 @@ function ThemeCometas({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeMatrix({ profile, links, isOwner, username, products }) {
+function ThemeMatrix({ profile, links, isOwner, username }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -634,8 +583,6 @@ function ThemeMatrix({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(0,255,65,0.3)', fontFamily: 'Courier New, monospace' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -655,7 +602,7 @@ function ThemeMatrix({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeSunset({ profile, links, isOwner, username, products }) {
+function ThemeSunset({ profile, links, isOwner, username }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -723,8 +670,6 @@ function ThemeSunset({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,200,150,0.4)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -744,7 +689,7 @@ function ThemeSunset({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeOlas({ profile, links, isOwner, username, products }) {
+function ThemeOlas({ profile, links, isOwner, username }) {
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
   const gap    = profile.link_gap ?? 9
@@ -821,8 +766,6 @@ function ThemeOlas({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(125,211,252,0.3)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -842,7 +785,7 @@ function ThemeOlas({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeStars({ profile, links, isOwner, username, products }) {
+function ThemeStars({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#a78bfa'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -889,8 +832,6 @@ function ThemeStars({ profile, links, isOwner, username, products }) {
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
 
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
-
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -910,7 +851,7 @@ function ThemeStars({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeDesert({ profile, links, isOwner, username, products }) {
+function ThemeDesert({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#f97316'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -953,7 +894,6 @@ function ThemeDesert({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -973,7 +913,7 @@ function ThemeDesert({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeAurora({ profile, links, isOwner, username, products }) {
+function ThemeAurora({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#4ade80'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1016,7 +956,6 @@ function ThemeAurora({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1036,7 +975,7 @@ function ThemeAurora({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeOcean({ profile, links, isOwner, username, products }) {
+function ThemeOcean({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#22d3ee'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1079,7 +1018,6 @@ function ThemeOcean({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1099,7 +1037,7 @@ function ThemeOcean({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeGlaciar({ profile, links, isOwner, username, products }) {
+function ThemeGlaciar({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#38bdf8'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1142,7 +1080,6 @@ function ThemeGlaciar({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1162,7 +1099,7 @@ function ThemeGlaciar({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeMontana({ profile, links, isOwner, username, products }) {
+function ThemeMontana({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#f97316'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1205,7 +1142,6 @@ function ThemeMontana({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1225,7 +1161,7 @@ function ThemeMontana({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeZen({ profile, links, isOwner, username, products }) {
+function ThemeZen({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#86efac'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1268,7 +1204,6 @@ function ThemeZen({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1288,7 +1223,7 @@ function ThemeZen({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeTormenta({ profile, links, isOwner, username, products }) {
+function ThemeTormenta({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#94a3b8'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1331,7 +1266,6 @@ function ThemeTormenta({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1351,7 +1285,7 @@ function ThemeTormenta({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeMarte({ profile, links, isOwner, username, products }) {
+function ThemeMarte({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#ef4444'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1394,7 +1328,6 @@ function ThemeMarte({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1414,7 +1347,7 @@ function ThemeMarte({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeLoto({ profile, links, isOwner, username, products }) {
+function ThemeLoto({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#f0abfc'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1457,7 +1390,6 @@ function ThemeLoto({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1477,7 +1409,7 @@ function ThemeLoto({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeNebulosa({ profile, links, isOwner, username, products }) {
+function ThemeNebulosa({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#a855f7'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1522,7 +1454,6 @@ function ThemeNebulosa({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1542,7 +1473,7 @@ function ThemeNebulosa({ profile, links, isOwner, username, products }) {
   )
 }
 
-function ThemeSakura({ profile, links, isOwner, username, products }) {
+function ThemeSakura({ profile, links, isOwner, username }) {
   const accent = profile.accent || '#f9a8d4'
   const anim   = profile.animation || 'bounce'
   const radius = profile.border_radius ?? 12
@@ -1587,7 +1518,6 @@ function ThemeSakura({ profile, links, isOwner, username, products }) {
               ))}
               {(!links || links.length === 0) && <p className="text-center text-sm py-6" style={{ color: 'rgba(255,255,255,0.3)' }}>Sin links por ahora</p>}
             </div>
-            <ProductsSection products={products} dark={true} paypalEmail={profile.paypal_email} />
             <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
               <ShareButton dark={true} />
               {isOwner ? (
@@ -1607,9 +1537,9 @@ function ThemeSakura({ profile, links, isOwner, username, products }) {
   )
 }
 
-export default function ProfilePage({ profile, links, isOwner, username, products }) {
+export default function ProfilePage({ profile, links, isOwner, username }) {
   const theme = profile.theme || 'light'
-  const p = { profile, links, isOwner, username, products }
+  const p = { profile, links, isOwner, username }
   if (theme === 'dark')      return <ThemeDark      {...p} />
   if (theme === 'gradient')  return <ThemeGradient  {...p} />
   if (theme === 'tornasol')  return <ThemeTornasol  {...p} />
