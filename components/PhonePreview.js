@@ -423,13 +423,13 @@ export default function PhonePreview({ profile, links }) {
       return (
         <>
           <style>{`
-            @keyframes pv-polvo-drift { 0%{transform:translateY(0);opacity:0} 10%{opacity:1} 90%{opacity:0.5} 100%{transform:translateY(-380px);opacity:0} }
+            @keyframes pv-polvo-drift { 0%{transform:translateY(0);opacity:0.9} 85%{opacity:0.7} 100%{transform:translateY(-380px);opacity:0} }
             @keyframes pv-polvo-name { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
             .pv-polvo-name { background:linear-gradient(90deg,#ffd700,#fff8dc,#ffaa00,#ffd700);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:pv-polvo-name 6s linear infinite; }
           `}</style>
           <div className="relative overflow-hidden" style={{ background: 'linear-gradient(160deg,#0d0a00,#1a1200,#0d0800)', minHeight: 520 }}>
             {[...Array(12)].map((_, i) => (
-              <div key={i} style={{ position: 'absolute', left: `${(i * 8.5) % 100}%`, bottom: 0, width: `${2 + i % 2}px`, height: `${2 + i % 2}px`, borderRadius: '50%', background: 'radial-gradient(circle,#ffd700,#ffaa00)', animation: `pv-polvo-drift ${8 + i * 1.5}s ease-in infinite`, animationDelay: `${i * 0.8}s` }} />
+              <div key={i} style={{ position: 'absolute', left: `${(i * 8.5) % 100}%`, bottom: 0, width: `${2 + i % 2}px`, height: `${2 + i % 2}px`, borderRadius: '50%', background: 'radial-gradient(circle,#ffd700,#ffaa00)', animation: `pv-polvo-drift ${8 + i * 1.5}s linear infinite`, animationDelay: `-${((i * 2.3) % (8 + i * 1.5)).toFixed(1)}s` }} />
             ))}
             <div className="relative z-10 p-4 pb-6">
               <div className="text-center mb-5">
@@ -500,13 +500,13 @@ export default function PhonePreview({ profile, links }) {
       return (
         <>
           <style>{`
-            @keyframes pv-lluvia-drop { 0%{transform:translateY(-60px);opacity:0} 5%{opacity:1} 95%{opacity:0.5} 100%{transform:translateY(380px);opacity:0} }
+            @keyframes pv-lluvia-drop { 0%{transform:translateY(-60px);opacity:0.7} 100%{transform:translateY(420px);opacity:0.7} }
             @keyframes pv-lluvia-name { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
             .pv-lluvia-name { background:linear-gradient(90deg,#00d4ff,#a0f0ff,#00aaff,#00d4ff);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:pv-lluvia-name 5s linear infinite; }
           `}</style>
           <div className="relative overflow-hidden" style={{ background: 'linear-gradient(180deg,#020408,#040810,#020c14)', minHeight: 520 }}>
             {[...Array(16)].map((_, i) => (
-              <div key={i} style={{ position: 'absolute', top: 0, left: `${(i * 6.5) % 100}%`, width: '1px', height: `${45 + i % 3 * 20}px`, background: 'linear-gradient(to bottom,transparent,rgba(100,220,255,0.6),transparent)', borderRadius: '1px', animation: `pv-lluvia-drop ${0.9 + i % 4 * 0.3}s linear infinite`, animationDelay: `${(i * 0.25) % 1.5}s` }} />
+              <div key={i} style={{ position: 'absolute', top: 0, left: `${(i * 6.5) % 100}%`, width: '1px', height: `${45 + i % 3 * 20}px`, background: 'linear-gradient(to bottom,transparent,rgba(100,220,255,0.7),transparent)', borderRadius: '1px', animation: `pv-lluvia-drop ${0.9 + i % 4 * 0.3}s linear infinite`, animationDelay: `-${((i * 0.18) % (0.9 + i % 4 * 0.3)).toFixed(2)}s` }} />
             ))}
             <div className="relative z-10 p-4 pb-6">
               <div className="text-center mb-5">
