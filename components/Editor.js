@@ -58,7 +58,6 @@ export default function Editor({ profile: initialProfile, links: initialLinks, u
         border_radius: profile.border_radius,
         link_gap:      profile.link_gap,
         theme:         profile.theme || 'light',
-        paypal_email:  profile.paypal_email || null,
       })
       .eq('id', userId)
 
